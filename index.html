@@ -3,384 +3,623 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiseman Siriro | Financial Engineering Portfolio</title>
     
-    <title>Wiseman Siriro | Portfolio for Financial Engineering</title> 
-      
     <link rel="icon" type="image/png" href="/favicon-32x32.png">
     <link rel="apple-touch-icon" href="/favicon-32x32.png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
-    <!-- Your Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* ==========================================================================
+           1. MODERN CSS VARIABLES & RESETS
+           ========================================================================== */
+        :root {
+            --bg-primary: #070d18;
+            --bg-secondary: #0d1627;
+            --bg-card: #132038;
+            --bg-card-hover: #192a47;
+            
+            --accent-gold: #e2b765;
+            --accent-gold-hover: #cfa14e;
+            --accent-blue: #2563eb;
+            --accent-cyan: #38bdf8;
+            
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            
+            --border-light: rgba(255, 255, 255, 0.08);
+            --border-gold: rgba(226, 183, 101, 0.3);
+            
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-heading: 'Playfair Display', serif;
+            
+            --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 25px rgba(226, 183, 101, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           2. HEADER & HERO
+           ========================================================================== */
+        header {
+            padding: 90px 0 50px;
+            text-align: center;
+            background: radial-gradient(circle at top center, rgba(37, 99, 235, 0.12) 0%, transparent 70%);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .header-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 50px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn i {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+        }
+
+        .contact-btn:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-gold);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* ==========================================================================
+           3. STICKY NAVIGATION BAR WITH BUTTONS
+           ========================================================================== */
+        nav {
+            position: sticky;
+            top: 20px;
+            z-index: 1000;
+            margin: 20px auto 40px;
+            width: fit-content;
+            background: rgba(13, 22, 39, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
+            padding: 8px 12px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            display: inline-block;
+            padding: 10px 22px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* ==========================================================================
+           4. SECTIONS COMMON STYLING
+           ========================================================================== */
+        section {
+            padding: 70px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--text-primary);
+            margin-bottom: 45px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-gold);
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ==========================================================================
+           5. PROJECTS SECTION (SIDE-BY-SIDE FLEXBOX LAYOUT)
+           ========================================================================== */
+        .projects-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .project-card {
+            flex: 1 1 calc(50% - 30px);
+            max-width: calc(50% - 30px);
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--border-gold);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .project-card-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-card-content h3 {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .project-card-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .btn-card {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .btn-card:hover {
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+        }
+
+        /* ==========================================================================
+           6. OVERALL SKILLS TABLE
+           ========================================================================== */
+        .skills-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 30px;
+            overflow-x: auto;
+        }
+
+        .skills-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .skills-table tr {
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .skills-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .skills-table td {
+            padding: 16px 20px;
+            vertical-align: middle;
+            font-size: 0.95rem;
+        }
+
+        .col-heading {
+            font-weight: 700;
+            color: var(--accent-gold);
+            width: 30%;
+            min-width: 220px;
+        }
+
+        .col-details {
+            color: var(--text-secondary);
+        }
+
+        /* ==========================================================================
+           7. MODERN CONTACT FORM SECTION
+           ========================================================================== */
+        .contact-container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .contact-intro {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group-full {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 10px rgba(226, 183, 101, 0.2);
+        }
+
+        .btn-submit {
+            grid-column: span 2;
+            width: 100%;
+            padding: 16px;
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background: var(--accent-gold-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* ==========================================================================
+           8. RESPONSIVE MEDIA QUERIES
+           ========================================================================== */
+        @media (max-width: 900px) {
+            .header-title { font-size: 2.3rem; }
+            .project-card {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 650px) {
+            nav {
+                width: 95%;
+                border-radius: 15px;
+            }
+            nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            nav ul li a {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+            .form-group-full, .btn-submit {
+                grid-column: span 1;
+            }
+            .contact-container {
+                padding: 25px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- HEADER SECTION -->
-<header>
-    <div class="container">
-        <h1>WISEMAN SIRIRO</h1>
-        <p>FINANCIAL ENGINEERING</p>
+    <!-- HEADER SECTION -->
+    <header>
+        <div class="container">
+            <h1 class="header-title">WISEMAN SIRIRO</h1>
+            <p class="header-subtitle">Financial Engineering Portfolio</p>
 
-<style>
-.contact-icons {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
+            <div class="contact-icons">
+                <a href="https://www.linkedin.com/in/wiseman-siriro-40a834175/" target="_blank" class="contact-btn">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
 
-/* EACH ITEM */
-.contact-icons a {
-    display: flex;
-    align-items: center; /* THIS MAKES ICON + TEXT SIDE BY SIDE */
-    gap: 8px;
-    text-decoration: none;
-    color: inherit;
-    font-size: 14px;
-    transition: 0.3s;
-}
+                <a href="mailto:wisemansirirog@gmail.com" class="contact-btn">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
 
-/* ICON */
-.contact-icons i {
-    font-size: 20px;
-}
+                <a href="tel:+4793081060" class="contact-btn">
+                    <i class="fas fa-phone"></i>
+                    <span>Phone</span>
+                </a>
 
-/* HOVER */
-.contact-icons a:hover {
-    transform: scale(1.1);
-    color: #0b2e6b; /* dark blue */
-}
-</style>
+                <a href="https://wa.me/4796733697" target="_blank" class="contact-btn">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </a>
 
-<div class="contact-icons">
+                <a href="https://github.com/wisemansg/wisemansg" target="_blank" class="contact-btn">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
 
-    <a href="https://www.linkedin.com/in/wiseman-siriro-40a834175/" target="_blank">
-        <i class="fab fa-linkedin"></i>
-        <span>LinkedIn</span>
-    </a>
+                <a href="https://github.com/wisemansg/wisemansg.github.io/blob/main/assets/files/WISEMAN%20SIRIRO%20-%20(Curriculum%20Vitae).pdf" download class="contact-btn">
+                    <i class="fas fa-file-arrow-down"></i>
+                    <span>Download CV</span>
+                </a>
+            </div>
+        </div>
+    </header>
 
-    <a href="mailto:wisemansirirog@gmail.com">
-        <i class="fas fa-envelope"></i>
-        <span>Email</span>
-    </a>
-
-    <a href="tel:+4793081060">
-        <i class="fas fa-phone"></i>
-        <span>Phone</span>
-    </a>
-
-    <a href="https://wa.me/4796733697" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-        <span>WhatsApp</span>
-    </a>
-
-    <a href="https://github.com/wisemansg/wisemansg" target="_blank">
-        <i class="fab fa-github"></i>
-        <span>GitHub</span>
-    </a>
-
-    <a href="https://github.com/wisemansg/wisemansg.github.io/blob/main/assets/files/WISEMAN%20SIRIRO%20-%20(Curriculum%20Vitae).pdf" download>
-       <i class="fas fa-file-arrow-down"></i>
-       <span>Download CV</span>
-    </a>
-</div>
-
-</div>
-</header>
-
-<!-- NAVIGATION -->
-<nav>
-    <div class="container">
+    <!-- STICKY NAVIGATION BAR -->
+    <nav>
         <ul>
-            <li><a href="#projects">PROJECTS</a></li>
+            <li><a href="#projects" class="active">Projects</a></li>
             <li><a href="#overallskills">Overall Skills</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-    </div>
-</nav>
+    </nav>
 
-<!-- PROJECTS SECTION -->
-<section id="projects" class="section">
-    <div class="container">
-        <h2>My Projects</h2>
-        <div class="projects-grid">
+    <main class="container">
+        <!-- PROJECTS SECTION -->
+        <section id="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
 
-            <!-- Project 1 -->
-            <div class="project-card">
-                <img src="https://raw.githubusercontent.com/wisemansg/financialengineeringfile/main/assets/Financial%20Econometrics-%20GCA1%20Pro%20Pic.jpeg" alt="Project Preview">
-                <div class="project-card-content">
-                    <h3>Financial Econometrics (Code Activity)</h3>
-                    <p style="text-align: justify;">
-                       This project activity covers foundational econometric workflows, including return calculation, the analysis of asset return properties, stationarity testing, and baseline time-series modelling using Autoregressive (AR), Moving Average (MA), Autoregressive Integrated Moving Average (ARIMA), and Autoregressive Conditional Heteroskedasticity (ARCH) models.
-                    </p>
-                    <div class="project-buttons">
-                        <a href="https://github.com/wisemansg/financialeconometricsGCA1" target="_blank" class="btn">View Summary</a>
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <img src="https://raw.githubusercontent.com/wisemansg/financialengineeringfile/main/assets/Financial%20Econometrics-%20GCA1%20Pro%20Pic.jpeg" alt="Financial Econometrics">
+                    <div class="project-card-content">
+                        <h3>Financial Econometrics (Code Activity)</h3>
+                        <p>Covers foundational econometric workflows, including return calculation, asset return properties, stationarity testing, and baseline time-series modeling using AR, MA, ARIMA, and ARCH models.</p>
+                        <a href="https://github.com/wisemansg/financialeconometricsGCA1" target="_blank" class="btn-card">
+                            <span>View Summary</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
 
-            <!-- Project 2 -->
-            <div class="project-card">
-                <img src="https://raw.githubusercontent.com/wisemansg/wisemansg.github.io/main/assets/images/Powder%20Characterization%20Pro%20Pic.jpeg" alt="Project Preview">
-                <div class="project-card-content">
-                    <h3>Powder Characterization</h3>
-                    <p style="text-align: justify;">
-                       This project compares gas atomized non-spheroidized (NS) and plasma-spheroidized (S) Ti-6Al-4V powders to assess the effect of spheroidization on powder performance. The study evaluates flowability, apparent and tap density, particle morphology, size distribution, shape uniformity, and chemical composition for additive manufacturing. Tools and methods include the Hall funnel (ASTM B213), tapping apparatus (ASTM B527), optical microscopy, SEM imaging, EDS analysis, and Python for data visualization. Results showed that spheroidized powder offers better flowability, higher density, improved packing efficiency, and greater particle sphericity and uniformity.
-                    </p>
-                    <div class="project-buttons">
-                        <a href="https://github.com/wisemansg/powdercharacterization" target="_blank" class="btn">View Summary</a>
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <img src="https://raw.githubusercontent.com/wisemansg/wisemansg.github.io/main/assets/images/Powder%20Characterization%20Pro%20Pic.jpeg" alt="Powder Characterization">
+                    <div class="project-card-content">
+                        <h3>Powder Characterization</h3>
+                        <p>Compares non-spheroidized (NS) and plasma-spheroidized (S) Ti-6Al-4V powders for additive manufacturing performance, evaluating flowability, morphology, size distribution, and density.</p>
+                        <a href="https://github.com/wisemansg/powdercharacterization" target="_blank" class="btn-card">
+                            <span>View Summary</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
 
-            <!-- Project 3 -->
-            <div class="project-card">
-                <img src="https://raw.githubusercontent.com/wisemansg/wisemansg.github.io/main/assets/images/Laser%20Cladding%20Pro%20Pic.jpeg" alt="Project Preview">
-                <div class="project-card-content">
-                    <h3>Laser Cladding</h3>
-                    <p style="text-align: justify;">
-                      This project investigates laser cladding (LC) of SS316L powder on a 42CrMo4 substrate and compares it with cold spray (CS) deposition. The study evaluates powder feed rate, track overlap, clad geometry, microstructure, dilution, hardness, and coating quality. Tools used include laser cladding, cold spray, optical microscopy, SEM imaging, EDS mapping, Vickers microhardness testing, and Python for data analysis. Results showed that optimized LC parameters achieved strong metallurgical bonding, low dilution, and higher hardness than the substrate.
-                    </p>
-                    <div class="project-buttons">
-                        <a href="https://github.com/wisemansg/lasercladding" target="_blank" class="btn">View Summary</a>
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <img src="https://raw.githubusercontent.com/wisemansg/wisemansg.github.io/main/assets/images/Laser%20Cladding%20Pro%20Pic.jpeg" alt="Laser Cladding">
+                    <div class="project-card-content">
+                        <h3>Laser Cladding</h3>
+                        <p>Investigates laser cladding of SS316L powder on a 42CrMo4 substrate versus cold spray deposition. Evaluates microstructure, dilution, hardness, and coating quality.</p>
+                        <a href="https://github.com/wisemansg/lasercladding" target="_blank" class="btn-card">
+                            <span>View Summary</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
 
-            <!-- Project 4 -->
-            <div class="project-card">
-                <img src="https://raw.githubusercontent.com/wisemansg/wisemansg.github.io/main/assets/images/Aspen%20HYSYS%20Pro%20Pic.jpeg" alt="Project Preview">
-                <div class="project-card-content">
-                    <h3>Aspen HYSYS</h3>
-                    <p style="text-align: justify;">
-                        Process Engineering Projects
-                    </p>
-                    <div class="project-buttons">
-                        <a href="https://github.com/wisemansg/hysys" target="_blank" class="btn">Documentation</a>
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <img src="https://raw.githubusercontent.com/wisemansg/wisemansg.github.io/main/assets/images/Aspen%20HYSYS%20Pro%20Pic.jpeg" alt="Aspen HYSYS">
+                    <div class="project-card-content">
+                        <h3>Aspen HYSYS</h3>
+                        <p>Process engineering simulation models and documentation focusing on industrial systems optimization and sustainable process design.</p>
+                        <a href="https://github.com/wisemansg/hysys" target="_blank" class="btn-card">
+                            <span>Documentation</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
+
             </div>
+        </section>
 
-        </div>
-    </div>
-</section>
-
-<!-- OVERALL SKILLS SECTION -->
-<section id="overallskills" class="section">
-    <div class="container">
-        <h2>Overall Skillset</h2>
-
-        <table class="word-table">
-            <tr>
-                <td class="col-heading">Project & Enterprise Systems</td>
-                <td>Enterprise Resource Planning (ERP) including SAP, Oracle, and IFS, STELLA, Trello, Asana, Confluence, Jira, Microsoft Project, PLM (Teamcenter, Windchill, ENOVIA), Process Documentation, Process Improvement, Workshop Facilitation, Project Coordination.</td>
-            </tr>
-            <tr>
-                <td class="col-heading">Data Analysis & Statistics</td>
-                <td>Power BI, Tableau, Spotfire, Grafana, Google Analytics, Adobe Analytics, R, MATLAB, Jupyter, Advanced Excel (VBA, Power Query), Data Science, Machine Learning, AI (Artificial Intelligence), Forecasting, Data Visualization, KPI Tracking, Reporting.</td>
-            </tr>
-            <tr>
-                <td class="col-heading">Programming Languages</td>
-                <td>SQL, JavaScript, C#, Python (Pandas, NumPy, Matplotlib, Seaborn, scikit-learn, TensorFlow, PyTorch), R, C++, Visual Basic, Visual Studio.</td>
-            </tr>
-            <tr>
-                <td class="col-heading">IT & Office Tools</td>
-                <td>Microsoft 365, Excel, PowerPoint, Word, Outlook, Teams, Visio, OneNote, Google Workspace, Adobe, Miro, Report Writing, Process Mapping.</td>
-            </tr>
-            <tr>
-                <td class="col-heading">Engineering & Simulation</td>
-                <td>ANSYS, ABAQUS, NASTRAN, Simulink, OpenFOAM, COMSOL, Fluent, STAR-CCM+, ASPEN Plus, gPROMS, HYSYS, Thermo-Calc, SimaPro, GaBi, OpenLCA, LabVIEW, ImageJ, HVAC simulation.</td>
-            </tr>
-            <tr>
-                <td class="col-heading">CAD & CAM Tools</td>
-                <td>AutoCAD, SolidWorks, CATIA, CREO, Siemens NX, Inventor, Fusion 360, Rhino 3D, Onshape.</td>
-            </tr>
-            <tr>
-                <td class="col-heading">Quality & Compliance</td>
-                <td>Good Manufacturing Practice (GMP), Good Distribution Practice (GDP), Quality Assurance (QA), Quality Control (QC), Root Cause Analysis (RCA), Statistical Process Control (SPC), Six Sigma, Lean, 5S, Kaizen, Value Stream Mapping (VSM), Lean Manufacturing, Risk Management.</td>
-            </tr>
-            <tr>
-                <td class="col-heading">Manufacturing Systems</td>
-                <td>SAP QM, SAP EWM, Oracle WMS, TrackWise, MES, Dynamics, MSA, manufacturing improvement.</td>
-            </tr>
-            <tr>
-                <td class="col-heading">Automation & Control</td>
-                <td>SCADA, n8n, Zapier, CRM, PLC (Siemens, Allen-Bradley), PID optimization.</td>
-            </tr>
-            <tr>
-                <td class="col-heading">IT/OT & Virtualization</td>
-                <td>VMware, Microsoft Azure (Azure), Amazon Web Services (AWS), Google Cloud Platform (GCP), Process Field Net (PROFINET), Modbus, Open Platform Communications Unified Architecture (OPC UA), Internet of Things (IoT), GitHub, Digital Industries, Augmented Reality / Virtual Reality (AR/VR), Building Management System (BMS).</td>
-            </tr>
-            <tr>
-                <td class="col-heading">Soft Skills</td>
-                <td>Communication, Collaboration, Problem Solving, Decision-Making, Stakeholder Engagement, Attention to Detail, Resilience, Adaptability, Critical Thinking, Emotional Intelligence, Leadership, Teamwork, Time Management, Creativity, Conflict Resolution, Negotiation, Presentation Skills, Analytical Thinking, Mentoring & Coaching, Stress Management, Active Listening, Networking, Strategic Thinking, Innovation, Empathy, Accountability, Organization, Persuasion, Multitasking.</td>
-            </tr>
-        </table>
-    </div>
-</section>
-
-<!-- CONTACT SECTION -->
-<section id="contact" class="section">
-    <div class="container">
-        <h2>Send me a message</h2>
-        
-        <form action="https://formsubmit.co/wisemansirirog@gmail.com" method="POST" class="contact-form">
-            <p>Interested in collaborating or have questions about my work? I'd love to hear from you!</p>
-
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" placeholder="Your name" required>
+        <!-- OVERALL SKILLS SECTION -->
+        <section id="overallskills">
+            <h2 class="section-title">Overall Skillset</h2>
+            <div class="skills-wrapper">
+                <table class="skills-table">
+                    <tr>
+                        <td class="col-heading">Project & Enterprise Systems</td>
+                        <td class="col-details">SAP, Oracle, IFS, STELLA, Trello, Asana, Confluence, Jira, MS Project, PLM (Teamcenter, Windchill, ENOVIA), Workshop Facilitation.</td>
+                    </tr>
+                    <tr>
+                        <td class="col-heading">Data Analysis & Statistics</td>
+                        <td class="col-details">Power BI, Tableau, Spotfire, Grafana, Google Analytics, R, MATLAB, Jupyter, Advanced Excel (VBA, Power Query), Machine Learning, Forecasting.</td>
+                    </tr>
+                    <tr>
+                        <td class="col-heading">Programming Languages</td>
+                        <td class="col-details">SQL, JavaScript, C#, Python (Pandas, NumPy, Matplotlib, Seaborn, scikit-learn, TensorFlow, PyTorch), R, C++, Visual Basic.</td>
+                    </tr>
+                    <tr>
+                        <td class="col-heading">Engineering & Simulation</td>
+                        <td class="col-details">ANSYS, ABAQUS, NASTRAN, Simulink, OpenFOAM, COMSOL, Fluent, STAR-CCM+, ASPEN Plus, HYSYS, SimaPro, OpenLCA, LabVIEW.</td>
+                    </tr>
+                    <tr>
+                        <td class="col-heading">CAD & CAM Tools</td>
+                        <td class="col-details">AutoCAD, SolidWorks, CATIA, CREO, Siemens NX, Inventor, Fusion 360, Rhino 3D, Onshape.</td>
+                    </tr>
+                    <tr>
+                        <td class="col-heading">Quality & Compliance</td>
+                        <td class="col-details">GMP, GDP, Quality Assurance, Quality Control, Root Cause Analysis, SPC, Six Sigma, Lean, 5S, Kaizen, Value Stream Mapping.</td>
+                    </tr>
+                    <tr>
+                        <td class="col-heading">IT/OT & Virtualization</td>
+                        <td class="col-details">VMware, Microsoft Azure, AWS, GCP, PROFINET, Modbus, OPC UA, IoT, GitHub, AR/VR, Building Management Systems.</td>
+                    </tr>
+                </table>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Your email" required>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact">
+            <h2 class="section-title">Send Me a Message</h2>
+            <div class="contact-container">
+                <p class="contact-intro">Interested in collaborating or have questions about my financial engineering or sustainability research? Send a message below!</p>
+                
+                <form action="https://formsubmit.co/wisemansirirog@gmail.com" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" placeholder="Your Full Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="Your Email Address" required>
+                    </div>
+
+                    <div class="form-group form-group-full">
+                        <label for="subject">Subject</label>
+                        <input type="text" name="subject" id="subject" placeholder="Project Inquiry / Collaboration" required>
+                    </div>
+
+                    <div class="form-group form-group-full">
+                        <label for="message">Message</label>
+                        <textarea name="message" id="message" rows="5" placeholder="Write your message here..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="subject">Subject</label>
-                <input type="text" name="subject" id="subject" placeholder="Subject" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea name="message" id="message" rows="6" placeholder="Your message" required></textarea>
-            </div>
-            
-            <button type="submit" class="btn">Send Message</button>
-        </form>
-    </div>
-</section>
-
-<style>
-    /* Reset & General Styles */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        margin: 0;
-    }
-
-    section {
-        padding-top: 40px;
-        padding-bottom: 30px;
-    }
-
-    section h2 {
-        margin-bottom: 25px;
-        text-align: center;
-    }
-
-    /* =================================================== */
-    /* FLEXBOX SIDE-BY-SIDE PROJECTS LAYOUT                */
-    /* =================================================== */
-    .projects-grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 30px;
-        margin-bottom: 30px;
-    }
-
-    .project-card {
-        flex: 1 1 calc(50% - 30px); /* 2 items side-by-side taking equal width */
-        max-width: calc(50% - 30px);
-        background: #fff;
-        border: 1px solid #e5e5e5;
-        border-radius: 12px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .project-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .project-card img {
-        width: 100%;
-        height: 220px;
-        object-fit: cover;
-    }
-
-    .project-card-content {
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        justify-content: space-between;
-    }
-
-    .project-card-content h3 {
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
-
-    .project-card-content p {
-        font-size: 14px;
-        line-height: 1.6;
-        color: #555;
-        margin-bottom: 15px;
-    }
-
-    .project-buttons {
-        margin-top: auto;
-    }
-
-    .btn {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #0b2e6b;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        font-size: 14px;
-        transition: background-color 0.3s ease;
-    }
-
-    .btn:hover {
-        background-color: #071f49;
-    }
-
-    /* RESPONSIVE LAYOUT FOR MOBILE SCREENS */
-    @media (max-width: 768px) {
-        .project-card {
-            flex: 1 1 100%; /* Stacks vertically on mobile */
-            max-width: 100%;
-        }
-    }
-
-    /* Skills table styling */
-    .word-table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0 12px;
-        font-size: 15px;
-    }
-
-    .word-table td {
-        border: 1px solid #000;
-        padding: 8px 10px;
-        vertical-align: top;
-    }
-
-    .word-table .col-heading {
-        font-weight: 700;
-        white-space: nowrap;
-        min-width: 250px;
-        width: 30%;
-    }
-</style>
+        </section>
+    </main>
 
 </body>
 </html>
